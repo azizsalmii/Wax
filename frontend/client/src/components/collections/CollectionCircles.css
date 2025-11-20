@@ -1,0 +1,212 @@
+/* ==== SECTION ENTRE HERO ET CATEGORY ==== */
+
+.collection-section {
+  width: 100%;
+  background: radial-gradient(
+    circle at top,
+    #191419 0%,
+    #050505 55%,
+    #020202 100%
+  ); /* vignette sombre */
+  color: #ffffff;
+  padding: 80px 0 70px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.collection-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.collection-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ==== HEADER ==== */
+
+.collection-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.collection-kicker {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.collection-header h2 {
+  font-size: 2.1rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0;
+}
+
+.collection-header p {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* ==== GRID DES CERCLES ==== */
+
+.collection-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+}
+
+/* ==== CARTE INDIVIDUELLE ==== */
+
+.collection-card {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    filter 0.3s ease;
+}
+
+/* apparition en cascade */
+.collection-section.in-view .collection-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.collection-section.in-view .collection-card:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.collection-section.in-view .collection-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.collection-section.in-view .collection-card:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.collection-section.in-view .collection-card:nth-child(4) {
+  transition-delay: 0.2s;
+}
+.collection-section.in-view .collection-card:nth-child(5) {
+  transition-delay: 0.25s;
+}
+.collection-section.in-view .collection-card:nth-child(6) {
+  transition-delay: 0.3s;
+}
+
+/* ==== CERCLE ==== */
+
+.collection-circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    filter 0.3s ease,
+    background-position 0.4s ease,
+    border 0.3s ease;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* Texte au centre du cercle */
+.collection-circle-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.15),
+    transparent
+  );
+}
+
+/* Hover : parallax léger + glow doré */
+.collection-card:hover .collection-circle {
+  transform: translateY(-8px) scale(1.05);
+  background-position: center 45%; /* effet parallax */
+  box-shadow:
+    0 0 0 1px rgba(255, 214, 120, 0.9),
+    0 24px 60px rgba(0, 0, 0, 0.95);
+  filter: brightness(1.05) contrast(1.1);
+}
+
+/* ==== LABEL SOUS LE CERCLE (glassmorphism) ==== */
+
+.collection-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0.9;
+}
+
+.collection-arrow {
+  font-size: 0.9rem;
+}
+
+/* ==== RESPONSIVE ==== */
+
+@media (max-width: 1024px) {
+  .collection-inner {
+    padding: 0 28px;
+  }
+
+  .collection-circle {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .collection-inner {
+    padding: 0 18px;
+  }
+
+  .collection-grid {
+    gap: 24px;
+  }
+
+  .collection-circle {
+    width: 180px;
+    height: 180px;
+  }
+}

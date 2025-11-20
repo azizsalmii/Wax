@@ -1,0 +1,145 @@
+.nevermind-hero-v2 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #111;
+  color: white;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Conteneur des slides */
+.hero-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Chaque slide */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none; /* évite de cliquer sur les slides cachées */
+}
+
+.hero-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Images gauche/droite */
+.hero-image {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 3s ease;
+}
+
+/* léger zoom sur le slide actif */
+.hero-slide.active .hero-image img {
+  transform: scale(1.05);
+}
+
+.hero-image.left {
+  left: 0;
+}
+
+.hero-image.right {
+  right: 0;
+}
+
+/* Texte centré par-dessus les images */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.hero-content h1 {
+  font-size: 11vw;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin: 2rem 0 3rem;
+  opacity: 0.9;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}
+
+.shop-now-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.shop-now-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 14vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+    width: 100%;
+    height: 50%;
+  }
+
+  .hero-image.left {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .hero-image.right {
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 16vw;
+  }
+}

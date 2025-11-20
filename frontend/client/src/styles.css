@@ -1,0 +1,51 @@
+:root{
+	--bw-bg: #ffffff;
+	--bw-paper: #f7f7f7;
+	--bw-text: #000000;
+	--bw-muted: #666666;
+}
+html,body{height:100%}
+body { font-family: 'Poppins', Arial, Helvetica, sans-serif; margin:0; padding:0; background:var(--bw-bg); color:var(--bw-text) }
+.header { display:flex; justify-content:space-between; padding:14px 20px; background:var(--bw-paper); align-items:center }
+.container { padding:20px; max-width:1100px; margin:0 auto }
+.product-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:18px }
+.card { background:#ffffff; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06); overflow:hidden }
+.card-image{ height:160px; background-size:cover; background-position:center; background-color:#efefef }
+.badge{ background:#000; color:#fff; padding:4px 8px; border-radius:20px; font-size:12px; text-transform:capitalize }
+.btn-primary{ background:#000; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer }
+.btn-outline{ background:transparent; border:1px solid #000; color:#000; padding:6px 10px; border-radius:6px; cursor:pointer }
+.btn-cta{ background:#000; color:#fff; padding:10px 18px; border-radius:8px; border:none }
+
+
+.footer{ background:#000; color:#fff }
+
+/* client specific */
+.navbar-link{ color: #000; text-decoration:none; padding:8px 10px; border-radius:8px }
+.muted{ color:var(--bw-muted) }
+.form-input{ padding:10px; border-radius:8px; border:1px solid #e6e6e6 }
+
+.hero-inner{ display:flex; align-items:center; gap:20px; }
+.hero .cta{ margin-top:12px }
+
+.category-badge{ padding:8px 12px; border-radius:20px; background:#efefef; font-weight:700 }
+
+.product-card-title{ color:#000; font-weight:700 }
+
+/* small screens tweaks */
+@media (max-width:600px){
+	.hero h1{ font-size:22px }
+}
+
+
+/* Category tiles - three large rectangles on home */
+.category-tiles{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin:8px 0 }
+.category-tile{ display:flex; gap:12px; align-items:center; background:#fff; border:2px solid #000; border-radius:12px; padding:12px; text-align:left; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; overflow:hidden }
+.category-tile:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.12) }
+.tile-media{ width:34%; height:120px; background-size:cover; background-position:center; border-radius:8px; flex-shrink:0; background-color:#efefef }
+.tile-content{ display:flex; flex-direction:column; padding:6px 10px }
+.tile-title{ font-size:20px; font-weight:800; color:#000; margin-bottom:6px; text-transform:capitalize }
+.tile-sub{ color:var(--bw-muted); font-size:13px }
+
+@media (max-width:800px){
+  .category-tiles{ grid-template-columns: 1fr; }
+}
