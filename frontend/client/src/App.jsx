@@ -1,42 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// src/App.jsx
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './pages/Home';
-import AllProducts from './pages/AllProducts';
-import About from './pages/About';
-import Reclamation from './pages/Reclamation';
+import Layout from "./components/layout/Layout";
 
-import Navbar from './components/navbar/Navbar';
-import Preloader from './components/Preloader';
-
-import './styles.css';
+// Pages principales
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ProductPage from "./pages/ProductPage";
+import ProductDetail from "./pages/ProductDetail";
+import Feedback from "./pages/Feedback";
+import Contact from "./pages/Contact";
+import CollectionPage from "./pages/CollectionPage";
+import CollectionDetailPage from "./pages/CollectionDetailPage";
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // durée totale du loader (en ms)
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
-    <>
-      {/* Écran de chargement au-dessus de tout */}
-      {loading && <Preloader />}
-
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
+    <BrowserRouter>
+      <Routes>
+        {/* Toutes les pages passent par Layout (Navbar + Footer + CartDrawer) */}
+        <Route element={<Layout />}>
+          
+          {/* HOME */}
           <Route path="/" element={<Home />} />
-          <Route path="/produits" element={<AllProducts />} />
+
+          {/* À PROPOS */}
           <Route path="/about" element={<About />} />
-          <Route path="/reclamation" element={<Reclamation />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+
+          {/* PRODUITS */}
+          <Route path="/produits" element={<ProductPage />} />
+          <Route path="/produit/:id" element={<ProductDetail />} />
+
+          {/* COLLECTIONS */}
+          <Route path="/collection" element={<CollectionPage />} />
+          <Route path="/collection/:id" element={<CollectionDetailPage />} />
+
+          {/* FEEDBACK */}
+          <Route path="/feedback" element={<Feedback />} />
+
+          {/* CONTACT */}
+          <Route path="/contact" element={<Contact />} />
+
+          {/* ❌ IMPORTANT : PAS DE ROUTE /panier 
+              → car ton mini-panier est maintenant un CartDrawer */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

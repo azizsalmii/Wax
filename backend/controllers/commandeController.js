@@ -1,52 +1,137 @@
-const Commande = require('../models/Commande');
-const Panier = require('../models/Panier');
+const Commande = require("../models/Commande");
+const Produit = require("../models/Produit");
 
+// =============================================
+// 1) CRÉER COMMANDE
+// =============================================
 exports.createCommande = async (req, res) => {
   try {
-    const { userId, adresseLivraison, paymentInfo } = req.body;
-    // For simplicity, take cart items and create order
-    const panier = await Panier.findOne({ userId }).populate('items.produit');
-    if (!panier || panier.items.length === 0) return res.status(400).json({ error: 'Panier vide' });
+    const { produit, taille, quantite } = req.body;
 
-    const items = panier.items.map(it => ({ produit: it.produit._id, quantite: it.quantite, prixUnitaire: it.produit.prix }));
-    const totalPrix = items.reduce((s, i) => s + i.prixUnitaire * i.quantite, 0);
+    if (!produit || !taille || !quantite) {
+      return res.status(400).json({ message: "Champs manquants." });
+    }
 
-    const commande = new Commande({ userId, items, totalPrix, adresseLivraison, paymentInfo, statut: 'pending' });
-    await commande.save();
+    const newCommande = await Commande.create({
+      produit,
+      taille,
+      quantite,
+      statut: "en_attente",
+      createdAt: new Date(),
+    });
 
-    // clear panier
-    await Panier.findOneAndDelete({ userId });
+    const populated = await newCommande.populate("produit");
 
-    res.status(201).json(commande);
+    res.status(201).json(populated);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error("Erreur createCommande :", err);
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };
 
+// =============================================
+// 2) GET TOUTES LES COMMANDES
+// =============================================
 exports.getCommandes = async (req, res) => {
   try {
-    const commandes = await Commande.find().populate('items.produit');
+    const commandes = await Commande.find().populate("produit");
     res.json(commandes);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Erreur getCommandes :", err);
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };
 
+// =============================================
+// 3) GET UNE COMMANDE PAR ID
+// =============================================
 exports.getCommandeById = async (req, res) => {
   try {
-    const commande = await Commande.findById(req.params.id).populate('items.produit');
-    if (!commande) return res.status(404).json({ error: 'Commande introuvable' });
+    const commande = await Commande.findById(req.params.id).populate("produit");
+
+    if (!commande) {
+      return res.status(404).json({ message: "Commande introuvable" });
+    }
+
     res.json(commande);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Erreur getCommandeById :", err);
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };
 
+// =============================================
+// 4) UPDATE STATUT
+// =============================================
 exports.updateStatut = async (req, res) => {
   try {
-    const commande = await Commande.findByIdAndUpdate(req.params.id, { statut: req.body.statut }, { new: true });
-    res.json(commande);
+    const { statut } = req.body;
+
+    const commande = await Commande.findByIdAndUpdate(
+      req.params.id,
+      { statut },
+      { new: true }
+    ).populate("produit");
+
+    if (!commande) {
+      return res.status(404).json({ message: "Commande introuvable" });
+    }
+
+    res.json({
+      message: "Statut mis à jour",
+      commande,
+    });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error("Erreur updateStatut :", err);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+// =============================================
+// 5) UPDATE QUANTITÉ
+// =============================================
+exports.updateQuantite = async (req, res) => {
+  try {
+    const { quantite } = req.body;
+
+    if (!quantite || quantite < 1) {
+      return res.status(400).json({ message: "Quantité invalide" });
+    }
+
+    const commande = await Commande.findByIdAndUpdate(
+      req.params.id,
+      { quantite },
+      { new: true }
+    ).populate("produit");
+
+    if (!commande) {
+      return res.status(404).json({ message: "Commande introuvable" });
+    }
+
+    res.json({
+      message: "Quantité mise à jour",
+      commande,
+    });
+  } catch (err) {
+    console.error("Erreur updateQuantite :", err);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+// =============================================
+// 6) SUPPRIMER COMMANDE
+// =============================================
+exports.deleteCommande = async (req, res) => {
+  try {
+    const deleted = await Commande.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Commande introuvable" });
+    }
+
+    res.json({ message: "Commande supprimée" });
+  } catch (err) {
+    console.error("Erreur deleteCommande :", err);
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };

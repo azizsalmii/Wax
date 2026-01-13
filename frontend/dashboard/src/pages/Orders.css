@@ -1,0 +1,88 @@
+.orders-container {
+  padding: 40px;
+}
+
+.orders-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #000000;
+}
+
+.orders-table {
+  width: 100%;
+  background: #0f0f0f;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+.orders-header {
+  display: grid;
+  grid-template-columns: 1.2fr 1.3fr 1.3fr 0.7fr 0.7fr 1fr;
+  padding: 14px 20px;
+  background: #161616;
+  color: #ddd;
+  font-weight: 600;
+  border-bottom: 1px solid #333;
+}
+
+.orders-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1.3fr 1.3fr 0.7fr 0.7fr 1fr;
+  padding: 18px 20px;
+  color: #eee;
+  font-size: 14px;
+  border-bottom: 1px solid #222;
+}
+
+.orders-row:hover {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.orders-cell p {
+  margin: 2px 0;
+  opacity: 0.8;
+}
+
+.product-line {
+  display: flex;
+}
+.product-details {
+  opacity: 0.7;
+  margin-left: 4px;
+}
+
+.total {
+  font-weight: bold;
+  color: #ffdd52;
+}
+
+/* BADGES STATUT */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #ffdd52;
+  color: #000;
+}
+
+.status-badge.confirmed {
+  background: #3ecf8e;
+  color: #000;
+}
+
+.status-badge.shipped {
+  background: #3aa0ff;
+  color: #000;
+}
+
+.status-badge.delivered {
+  background: #4caf50;
+  color: #fff;
+}

@@ -1,10 +1,15 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
-import './styles.css'
+// src/main.jsx
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./styles.css";
 
-createRoot(document.getElementById('root')).render(
+import { CartProvider } from "./context/CartContext"; // ✅ ajout
+
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </React.StrictMode>
-)
+);

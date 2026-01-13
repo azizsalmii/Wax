@@ -1,0 +1,274 @@
+/* ===========================
+   OVERLAY
+=========================== */
+.checkout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ===========================
+   CARD
+=========================== */
+.checkout-card {
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  box-shadow: 0 0 40px rgba(255,215,0,0.18);
+  border-radius: 20px;
+  padding: 35px;
+  width: 460px;
+  position: relative;
+  animation: slideUp 0.35s ease;
+}
+
+.checkout-card h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* ===========================
+   PROGRESS BAR (3 étapes)
+=========================== */
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+
+.progress-step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,215,0,0.2);
+  color: rgba(255,215,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.progress-step.active {
+  border-color: gold;
+  color: gold;
+  box-shadow: 0 0 12px rgba(255,215,0,0.5);
+}
+
+.progress-line {
+  width: 40px;
+  height: 3px;
+  background: rgba(255,215,0,0.25);
+  transition: 0.3s ease;
+}
+
+.progress-line.active {
+  background: gold;
+  box-shadow: 0 0 8px rgba(255,215,0,0.4);
+}
+
+/* ===========================
+   INPUT STYLE
+=========================== */
+.checkout-form input,
+.checkout-form select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: white;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.checkout-form input::placeholder {
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.3px;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus {
+  border-color: gold;
+  box-shadow: 0 0 10px rgba(255,215,0,0.35);
+  outline: none;
+  background: rgba(255,255,255,0.07);
+}
+
+/* ===========================
+   GOLD SELECT DROPDOWN
+=========================== */
+.checkout-form select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  background-color: #111;
+  color: #fff;
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='gold' d='M7 10L0.0718 0H13.928L7 10z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+}
+
+.checkout-form select option {
+  background: #111 !important;
+  color: #fff !important;
+  padding: 10px;
+}
+
+/* Firefox Fix */
+@-moz-document url-prefix() {
+  .checkout-form select option {
+    background: #111 !important;
+    color: #fff !important;
+  }
+}
+
+/* ===========================
+   STEP NAVIGATION BUTTONS
+=========================== */
+.step-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  color: gold;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.step-btn:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.step-btn.back {
+  color: #bbbbbb;
+}
+
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* ===========================
+   REVIEW BOX (Step 3)
+=========================== */
+.review-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,215,0,0.25);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  color: #eee;
+  font-size: 14px;
+}
+
+/* ===========================
+   FINAL VALIDATION BUTTON
+=========================== */
+.validate-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+
+  background: linear-gradient(90deg, #b38728, #f7ef8a, #b38728);
+  color: #000;
+
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  font-size: 15px;
+
+  box-shadow: 0 0 18px rgba(255,215,0,0.25);
+  transition: 0.25s ease;
+}
+
+.validate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255,215,0,0.5);
+}
+
+/* ===========================
+   CLOSE BUTTON
+=========================== */
+.close-checkout {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: gold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.close-checkout:hover {
+  transform: scale(1.1);
+  color: #ffe36d;
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.error-msg {
+  color: #ff0000 !important;   /* Texte blanc */
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-left: 4px;
+
+  /* Optionnel : un léger glow rouge pour être visible */
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.55);
+}
+/* === UNIFORMISER LA HAUTEUR DES CHAMPS === */
+.checkout-form input,
+.checkout-form select {
+  height: 52px;              /* même hauteur pour tous */
+  padding: 0 14px;           /* même padding horizontal */
+  box-sizing: border-box;
+}
+
+.checkout-form select {
+  padding-right: 40px !important; /* espace pour la flèche dorée */
+}
+/* === MÊME LARGEUR POUR LES BOUTONS BACK & APPROVE === */
+.step-nav button {
+  flex: 1;             /* les 2 prennent la même largeur */
+}
+
+/* Supprimer le width:100% du bouton final */
+.validate-btn {
+  width: auto !important;      
+}

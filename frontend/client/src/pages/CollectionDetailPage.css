@@ -1,0 +1,379 @@
+.collection-detail-page {
+  min-height: 100vh;
+  background: #050505;
+  color: #fff;
+  padding-bottom: 80px;
+}
+
+/* ===================== TOP BAR ===================== */
+.cdp-topbar {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  /* FIX PRINCIPAL : enlever le grand espace inutile */
+  padding: 20px 40px 10px !important;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.cdp-back {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: 0.25s ease;
+}
+
+.cdp-back:hover {
+  background: #fff;
+  color: #000;
+}
+
+.cdp-crumb {
+  opacity: 0.7;
+}
+
+/* ===================== HERO TITLE ===================== */
+
+
+.cdp-hero-text h1 {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  margin: 4px 0 8px;
+  font-weight: 800;
+}
+
+.cdp-hero-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.cdp-hero-desc {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===================== LAYOUT ===================== */
+.cdp-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 40px 0;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+/* ===================== FILTERS ===================== */
+.cdp-filters {
+  display: flex;
+  gap: 14px;
+  margin: 10px 0 32px;
+  flex-wrap: wrap;
+}
+
+.cdp-filter-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  letter-spacing: .18em;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: .3s;
+  text-transform: uppercase;
+}
+
+.cdp-filter-btn:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.cdp-filter-btn.active {
+  background: linear-gradient(135deg, #e4c465 0%, #b38c2c 100%);
+  color: #000;
+  border: none;
+  box-shadow: 0 4px 22px rgba(255, 215, 0, 0.35);
+}
+
+/* ===================== PRODUITS ===================== */
+.cdp-products {
+  min-height: 300px;
+}
+
+.cdp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 28px;
+  padding-bottom: 50px;
+}
+
+.cdp-card {
+  border-radius: 30px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #121212, #050505);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  transition: 0.4s ease;
+}
+
+.cdp-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 40px 95px rgba(0,0,0,1),
+    0 0 0 1px rgba(255,214,120,0.45);
+}
+
+.cdp-card-image {
+  height: 360px;
+  overflow: hidden;
+}
+
+.cdp-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: 0.5s ease;
+}
+
+.cdp-card:hover .cdp-card-image img {
+  transform: scale(1.1);
+}
+
+.cdp-card-info {
+  padding: 18px 20px 22px;
+}
+
+.cdp-card-info h2 {
+  font-size: 1.15rem;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.cdp-price {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ===================== VIDEO ===================== */
+.cdp-video-box {
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+}
+
+.cdp-video-frame {
+  border-radius: 30px;
+  overflow: hidden;
+  background: #000;
+  height: 640px;
+  max-height: 82vh;
+  box-shadow:
+    0 26px 75px rgba(0, 0, 0, 1),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.cdp-video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cdp-video-label {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ===================== SPOTLIGHT LUXE ===================== */
+.spotlight-hero {
+  position: relative;
+  text-align: center;
+
+  /* Ajoute un offset pour ne plus être collé au navbar */
+  padding-top: 120px;
+
+  padding-bottom: 40px;
+}
+
+
+/* Halo Spotlight */
+.spotlight-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;                               
+  left: 50%;
+  transform: translateX(-50%);
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.06) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spotlight-text {
+  position: relative;
+  z-index: 2;
+}
+
+.spotlight-title {
+  font-size: 50px;
+  letter-spacing: 6px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.45),
+    0 0 24px rgba(255,255,255,0.25),
+    0 0 45px rgba(255,255,255,0.2);
+  animation: fadeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes fadeGlow {
+  0% {
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.25),
+      0 0 12px rgba(255,255,255,0.2);
+  }
+  100% {
+    text-shadow:
+      0 0 18px rgba(255,255,255,0.55),
+      0 0 38px rgba(255,255,255,0.4),
+      0 0 65px rgba(255,255,255,0.3);
+  }
+}
+/* ===================== SLIDER PRODUIT ===================== */
+
+.cdp-card-slider {
+  width: 100%;
+  height: 360px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.cdp-slider-img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 30px;
+}
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+.badge-luxe {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Disponible = vert luxe */
+.badge-available {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 180, 80, 0.45),
+    rgba(0, 120, 40, 0.35)
+  );
+  border: 1px solid rgba(0, 200, 120, 0.5);
+}
+
+/* Sold Out = rouge luxe */
+.badge-soldout {
+  background: linear-gradient(
+    135deg,
+    rgba(200, 0, 60, 0.45),
+    rgba(140, 0, 20, 0.35)
+  );
+  border: 1px solid rgba(255, 0, 80, 0.5);
+}
+/* INFO HEADER (nom + badge alignés) */
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nouveau badge soft-luxe */
+.badge-soft {
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+  transition: 0.25s ease;
+}
+
+/* Disponible = vert doux luxe */
+.badge-soft.available {
+  background: rgba(0, 255, 140, 0.12);
+  color: #00ff8a;
+  border-color: rgba(0, 255, 140, 0.35);
+}
+
+/* Sold Out = rouge doux luxe */
+.badge-soft.soldout {
+  background: rgba(255, 80, 80, 0.12);
+  color: #ff4d6d;
+  border-color: rgba(255, 80, 80, 0.35);
+}
+
+.badge-soft:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255,255,255,0.15);
+}

@@ -1,0 +1,95 @@
+/* Bande défilante full width entre sections */
+.track-banner {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: #323230;
+  color: #070505;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  overflow: hidden;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+/* conteneur */
+.track-banner-inner {
+  width: 100%;
+}
+
+/* piste qui bouge */
+.track-banner-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: track-marquee 20s linear infinite;
+}
+
+/* bloc [texte + logo] */
+.track-banner-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;        /* espace entre texte et logo */
+  padding: 0 42px;  /* espace entre les blocs */
+}
+
+/* TEXTE blanc */
+.track-banner-text {
+  font-size: 1.2rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* LOGO sans cercle, plus grand, léger glow + rotation lente */
+.track-banner-logo {
+  width: 130px;      /* 🔥 augmente/diminue ici si tu veux */
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+  animation: logo-rotation 12s linear infinite;
+}
+
+/* Animation du texte (marquee) */
+@keyframes track-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* Pause du scroll au hover */
+.track-banner:hover .track-banner-track {
+  animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .track-banner {
+    height: 60px;
+  }
+
+  .track-banner-item {
+    padding: 0 24px;
+    gap: 14px;
+  }
+
+  .track-banner-text {
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+  }
+
+  .track-banner-logo {
+    width: 45px;
+  }
+}

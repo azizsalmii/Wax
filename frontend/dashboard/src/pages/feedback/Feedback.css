@@ -1,0 +1,214 @@
+/* ===== Container ===== */
+.feedback-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.feedback-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #000000, #b1b6b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Formulaire ===== */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+.feedback-form input[type="text"],
+.feedback-form textarea,
+.feedback-form input[type="file"] {
+  padding: 12px 18px;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+  font-size: 1rem;
+}
+
+.feedback-form input[type="text"]:focus,
+.feedback-form textarea:focus,
+.feedback-form input[type="file"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 15px rgba(59,130,246,0.4);
+}
+
+/* ===== Buttons ===== */
+.feedback-form .btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.feedback-form button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.feedback-form button[type="submit"] {
+  background: linear-gradient(135deg, #000000, #b1b6b4);
+  box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+}
+
+.feedback-form button[type="submit"]:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.feedback-form button[type="button"] {
+  background: linear-gradient(135deg,#f87171,#fbbf24);
+  box-shadow: 0 8px 20px rgba(251,191,36,0.4);
+}
+
+.feedback-form button[type="button"]:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* ===== Feedback List ===== */
+.feedback-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media(min-width: 600px) {
+  .feedback-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.feedback-card {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(15px);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 0.6s ease;
+}
+
+.feedback-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.feedback-card img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 12px rgba(59,130,246,0.5);
+}
+
+/* ===== Content ===== */
+.feedback-content h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #797979, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feedback-content p {
+  margin: 5px 0 0;
+  color: #1f2937;
+  font-size: 0.95rem;
+}
+
+/* ===== Actions ===== */
+.feedback-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.feedback-actions button {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+  color: #6b7280;
+}
+
+.feedback-actions button:hover {
+  transform: scale(1.25);
+  color: #3b82f6;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Switch visibilité */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc; /* Gris par défaut */
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch.active .slider {
+  background-color: #4caf50; /* Vert si actif */
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(26px);
+}

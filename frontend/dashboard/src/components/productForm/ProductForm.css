@@ -1,0 +1,172 @@
+/* ====== FORM CONTAINER ====== */
+.product-form-container {
+  background-color: #ffffff;
+  padding: 30px 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.07);
+  max-width: 650px;
+  margin: 25px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.4s ease;
+}
+
+/* ====== FORM ROWS ====== */
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ====== FORM GROUPS ====== */
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+/* ====== INPUTS & SELECT ====== */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 15px;
+  border: 2px solid #e5e7eb;
+  font-size: 1rem;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.25);
+  background-color: #ffffff;
+}
+
+/* ====== TEXTAREA ====== */
+textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+/* ====== FILE INPUT ====== */
+input[type="file"] {
+  padding: 12px;
+  border-radius: 15px;
+  border: 2px dashed #d1d5db;
+  background-color: #f3f4f6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+input[type="file"]:hover {
+  border-color: #3b82f6;
+  background-color: #e0f2fe;
+  color: #1e40af;
+}
+
+/* ====== CHECKBOX ====== */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+}
+
+/* ====== BUTTONS ====== */
+.btn-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-submit,
+.btn-reset {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Bouton Enregistrer */
+.btn-submit {
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  color: white;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(59,130,246,0.35);
+}
+
+/* Bouton Réinitialiser */
+.btn-reset {
+  background: linear-gradient(135deg, #f87171, #fbbf24);
+  color: white;
+}
+
+.btn-reset:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(251,191,36,0.35);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* ===== PREVIEW IMAGES (petites & propres) ===== */
+
+.preview-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.preview-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+  background: #111;
+  transition: transform .2s ease;
+}
+
+.preview-img:hover {
+  transform: scale(1.05);
+  border-color: rgba(255,255,255,0.35);
+}

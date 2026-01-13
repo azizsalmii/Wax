@@ -1,0 +1,453 @@
+html,
+body {
+  background: #000 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* PAGE GLOBALE */
+.product-detail-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #191419 0%, #050505 55%, #020202 100%);
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+/* Layout principal – centré + cartes alignées */
+.product-detail-layout {
+  max-width: 1180px;
+  margin: 72px auto 96px;        /* plus d’espace en haut/bas => visuellement centré */
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr);
+  gap: 32px;
+  align-items: stretch;          /* les deux cartes s’alignent en hauteur */
+}
+
+/* GALERIE */
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Photo principale */
+.main-photo {
+  border-radius: 22px;
+  overflow: hidden;
+  background: #050505;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85);
+  aspect-ratio: 4 / 5;
+  max-height: 520px;
+}
+
+.main-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Vignettes */
+.thumb-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  border: none;
+  padding: 0;
+  background: transparent;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 70px;
+  height: 88px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  opacity: 0.7;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, opacity 0.25s ease, border 0.25s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb:hover,
+.thumb.active {
+  opacity: 1;
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* PANNEAU DROIT */
+.product-panel {
+  display: flex;
+  align-items: stretch;
+}
+
+.panel-inner {
+  background: rgba(9, 7, 10, 0.96);
+  border-radius: 22px;
+  padding: 22px 22px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9);
+  width: 100%;
+}
+
+/* Titre / sous-titre */
+.panel-title {
+  font-size: 1.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.panel-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin-bottom: 14px;
+}
+
+/* Prix */
+.panel-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.panel-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.panel-old-price {
+  font-size: 0.9rem;
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+/* Description */
+.panel-description {
+  font-size: 0.9rem;
+  opacity: 0.78;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+/* Blocks */
+.panel-block {
+  margin-bottom: 16px;
+}
+
+.panel-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.panel-label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* Tailles */
+.size-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-pill {
+  min-width: 40px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+}
+
+.size-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.size-pill.active {
+  background: #ffffff;
+  color: #050505;
+}
+
+/* Quantité */
+.qty-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.qty-row button {
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-row span {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Conteneur du bouton */
+.panel-actions {
+  display: flex;
+  justify-content: center;   /* centre le bouton */
+  margin: 25px 0;
+}
+
+/* Bouton Luxe Gold réduit */
+.btn-primary {
+  width: auto !important;     /* empêche le 100% */
+  max-width: 240px;           /* limite la largeur */
+  padding: 10px 26px;         /* taille du bouton */
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  background: linear-gradient(
+    135deg,
+    #f7e7b0 0%,
+    #e3c87a 35%,
+    #cfa447 70%,
+    #b9872b 100%
+  );
+  color: #050505;
+
+  border: none;
+  cursor: pointer;
+
+  /* Glow luxueux */
+  box-shadow:
+    0 0 14px rgba(255, 215, 140, 0.45),
+    inset 0 0 8px rgba(255, 255, 255, 0.35);
+
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 26px rgba(255, 220, 150, 0.75),
+    inset 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* on enlève le deuxième bouton */
+.btn-secondary {
+  display: none !important;
+}
+
+
+/* Messages */
+.panel-message {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+
+.panel-message.error {
+  background: rgba(255, 71, 87, 0.16);
+  border: 1px solid rgba(255, 71, 87, 0.5);
+}
+
+.panel-message.success {
+  background: rgba(46, 213, 115, 0.16);
+  border: 1px solid rgba(46, 213, 115, 0.5);
+}
+
+/* Infos extra */
+.panel-extra {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  opacity: 0.75;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
+/* Centrage message d’erreur/chargement */
+.center-message {
+  max-width: 600px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .product-detail-layout {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .product-panel {
+    order: -1;
+  }
+
+  .main-photo {
+    max-height: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-detail-layout {
+    margin-top: 28px;
+    padding: 0 14px;
+  }
+
+  .panel-title {
+    font-size: 1.6rem;
+  }
+
+  .main-photo {
+    border-radius: 18px;
+    max-height: 380px;
+  }
+
+  .panel-inner {
+    border-radius: 18px;
+  }
+}
+/* ===== Séparateur lumineux sous le navbar ===== */
+
+.detail-separator-wrapper {
+  max-width: 1180px;
+  margin: 56px auto 0;     /* espace sous le navbar */
+  padding: 0 24px;
+}
+
+.detail-separator {
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(242, 209, 132, 0.1) 8%,
+    rgba(242, 209, 132, 0.7) 35%,
+    #f2d184 50%,
+    rgba(208, 167, 67, 0.9) 65%,
+    rgba(242, 209, 132, 0.7) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 22px rgba(242, 209, 132, 0.45);
+  opacity: 0.95;
+}
+
+/* ==== BOUTON "SIZE GUIDE" ==== */
+
+.size-guide-toggle {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.size-guide-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: #f2d184;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.size-guide-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: #f2d184;
+  transform: translateY(-2px);
+}
+
+/* ==== TABLEAU LUXE COMPLET ==== */
+
+.size-table {
+  margin-top: 16px;
+  padding: 18px 22px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+  animation: fadeInScale 0.35s ease forwards;
+
+  text-align: center;
+}
+
+.table-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f2d184;
+  margin-bottom: 12px;
+}
+
+.size-table table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.size-table th {
+  padding-bottom: 8px;
+  font-weight: 600;
+  opacity: 0.75;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.size-table td {
+  padding: 10px 0;
+}
+
+/* Animation luxe */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

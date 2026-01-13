@@ -1,0 +1,148 @@
+/* Full bleed noir comme tes autres sections */
+.masonry-section {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: #050505;
+  color: #fff;
+  padding: 90px 0 110px;
+  overflow: hidden;
+}
+
+.masonry-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 45px;
+}
+
+/* Header */
+.masonry-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.masonry-kicker {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.masonry-header h2 {
+  font-size: 2.2rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin: 0 0 14px;
+}
+
+.masonry-header p {
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* Masonry (CSS columns = rendu Pinterest simple et propre) */
+.masonry-grid {
+  column-count: 3;
+  column-gap: 22px;
+}
+
+.masonry-card {
+  break-inside: avoid;
+  margin-bottom: 22px;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #0b0b0b;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: masonryFade 0.9s ease forwards;
+}
+
+.masonry-img {
+  width: 100%;
+  height: auto;
+  min-height: 220px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s ease, filter 0.6s ease;
+  transform: scale(1.03);
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* Overlay luxe */
+.masonry-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at top,
+      rgba(0,0,0,0.05),
+      rgba(0,0,0,0.55)
+    ),
+    linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8) 100%);
+  pointer-events: none;
+}
+
+/* Texte discret au bas */
+.masonry-text {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  right: 16px;
+  z-index: 2;
+  color: white;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  text-shadow: 0 6px 14px rgba(0,0,0,0.9);
+}
+
+/* Hover slow luxe */
+.masonry-card:hover .masonry-img {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.08);
+}
+
+/* Reveal global */
+.masonry-section .masonry-header,
+.masonry-section .masonry-grid {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: all 1s ease;
+}
+
+.masonry-section.in-view .masonry-header,
+.masonry-section.in-view .masonry-grid {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes masonryFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 700px) {
+  .masonry-grid { column-count: 1; }
+  .masonry-section { padding: 70px 0 90px; }
+  .masonry-inner { padding: 0 22px; }
+}

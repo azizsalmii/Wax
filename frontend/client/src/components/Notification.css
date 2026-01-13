@@ -1,0 +1,43 @@
+/* Container fixed on top */
+.lux-notif-container {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 5000;
+  animation: notifSlideIn 0.5s ease forwards;
+}
+
+/* Notification box */
+.lux-notif {
+  background: rgba(15, 15, 15, 0.9);
+  border: 1px solid gold;
+  padding: 14px 22px;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: notifFadeOut 0.5s ease 2.5s forwards;
+}
+
+/* Text */
+.lux-notif-message {
+  color: gold;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* Slide-in animation */
+@keyframes notifSlideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade-out animation */
+@keyframes notifFadeOut {
+  to { opacity: 0; transform: translateY(-15px); }
+}

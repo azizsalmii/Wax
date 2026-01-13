@@ -1,0 +1,32 @@
+.luxe-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 16px 26px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+
+  animation: fadeInUp 0.35s ease forwards;
+}
+
+.luxe-toast-msg {
+  color: #f8e7a1; /* gold pale */
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

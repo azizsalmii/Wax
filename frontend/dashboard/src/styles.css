@@ -1,36 +1,36 @@
-:root{
-	--wax-primary:#b24a00;
-	--wax-secondary:#ffdd57;
-	--bg:#fffaf3;
-	--muted:#666
+:root {
+  --wax-primary: #b24a00;
+  --wax-secondary: #ffdd57;
+  --bg: #fffaf3;
+  --muted: #666;
 }
-body { font-family: 'Poppins', Arial, Helvetica, sans-serif; margin: 0; padding: 0; background:var(--bg) }
-.app { padding: 12px; }
-.header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; padding:10px 14px; background:linear-gradient(90deg,var(--wax-secondary), #fff) }
-.sidebar { width:220px }
-.content { margin-left:240px }
-.table { width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden }
-.table th, .table td { border-bottom:1px solid #eee; padding:10px }
-.logo { height:44px }
 
-/* Dashboard enhancements */
-.container-card{ background:#fff; padding:16px; border-radius:10px; box-shadow:0 8px 24px rgba(11,11,11,0.06) }
-.muted{ color:var(--muted) }
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+}
 
-.btn{ display:inline-block; padding:8px 12px; border-radius:8px; border:none; cursor:pointer }
-.btn-primary{ background:var(--wax-primary); color:#fff }
-.btn-danger{ background:#c0392b; color:#fff }
-.btn-ghost{ background:transparent; border:1px solid #ddd }
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
 
-.form-input, textarea{ width:100%; padding:10px; border:1px solid #e6e6e6; border-radius:8px; outline:none }
-.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+/* Contenu principal */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #f5f7fa;
+  padding: 20px;
+}
 
-.product-image{ width:64px; height:64px; background:#f6f6f6; border-radius:8px; background-size:cover; background-position:center }
-
-.table-actions button{ margin-right:8px }
-
-@media (max-width:900px){
-	.content { margin-left:0; }
-	.sidebar { display:none }
-	.form-row{ grid-template-columns:1fr }
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    padding: 15px;
+  }
 }

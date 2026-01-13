@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+// src/components/layout/Navbar.jsx
+import React, { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
+
+import { useCart } from "../../context/CartContext"; 
+import CartDrawer from "../CartDrawer"; // Drawer luxe
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const [openDrawer, setOpenDrawer] = useState(false);
 
+  const location = useLocation();
+  const { cart } = useCart(); // panier global
+
+  // Fermer le menu mobile lors d’un changement de page
   useEffect(() => {
-    setMobileOpen(false); // ferme le menu mobile à chaque changement de page
+    setMobileOpen(false);
   }, [location]);
 
+  // Détection du scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
@@ -24,51 +31,68 @@ export default function Navbar() {
     { to: "/produits", label: "Produits" },
     { to: "/collection", label: "Collection" },
     { to: "/feedback", label: "Feedback" },
-    { to: "/apropos", label: "À propos" },
-    { to: "/contact", label: "Contact" }
+    { to: "/about", label: "À propos" },
+    { to: "/contact", label: "Contact" },
   ];
 
-  // 🔥 Choix du logo selon scroll
-  const logoSrc = scrolled
-    ? "/assets/Logo_wax_white.png"   // logo blanc (navbar noire)
-    : "/assets/Logo_wax.png";        // logo noir (fond transparent)
+  const logoSrc = "/assets/Logo_wax_white.png";
 
   return (
-    <header className={`main-navbar ${scrolled ? 'scrolled' : ''} ${mobileOpen ? 'mobile-open' : ''}`}>
-      {/* Desktop Navbar */}
+    <header
+      className={`main-navbar ${scrolled ? "scrolled" : ""} ${
+        mobileOpen ? "mobile-open" : ""
+      }`}
+    >
       <div className="navbar-container">
-        
-        {/* Menu gauche */}
+
+        {/* =======================
+              NAVIGATION GAUCHE
+        ======================== */}
         <nav className="nav-left">
-          {navItems.map(item => (
+          {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
-              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
             >
               {item.label}
             </NavLink>
           ))}
         </nav>
 
-        {/* Logo centré */}
+        {/* =======================
+                LOGO CENTRE
+        ======================== */}
         <div className="navbar-logo">
           <NavLink to="/">
             <img src={logoSrc} alt="WAX Logo" className="logo-img" />
           </NavLink>
         </div>
 
-        {/* Icône panier à droite */}
+        {/* =======================
+             PANIER À DROITE
+        ======================== */}
         <div className="nav-right">
-          <button className="icon-btn" aria-label="Panier">
+          <div
+            className="cart-icon-wrapper"
+            onClick={() => setOpenDrawer(true)}
+            role="button"
+          >
             🛒
-          </button>
+            {cart.length > 0 && (
+              <span className="cart-badge">{cart.length}</span>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Hamburger mobile */}
+      {/* =======================
+            MENU MOBILE
+      ======================== */}
       <button
-        className={`hamburger ${mobileOpen ? 'open' : ''}`}
+        className={`hamburger ${mobileOpen ? "open" : ""}`}
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Ouvrir le menu"
       >
@@ -77,19 +101,29 @@ export default function Navbar() {
         <span></span>
       </button>
 
-      {/* Menu mobile */}
-      <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
-        {navItems.map(item => (
+      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
+        {navItems.map((item) => (
           <NavLink key={item.to} to={item.to} className="mobile-link">
             {item.label}
           </NavLink>
         ))}
-        <div className="mobile-actions">
-          <span className="mobile-cart" aria-label="Panier" role="button">
-            🛒
+
+        {/* ICON DU PANIER MOBILE */}
+        <div
+          className="mobile-actions"
+          onClick={() => setOpenDrawer(true)}
+          role="button"
+        >
+          <span className="mobile-cart">
+            🛒 {cart.length > 0 && <b>({cart.length})</b>}
           </span>
         </div>
       </div>
+
+      {/* =======================
+         CART DRAWER (SLIDE-IN)
+      ======================== */}
+      <CartDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
     </header>
   );
 }

@@ -1,0 +1,290 @@
+/* FULL BLEED SECTION */
+.aboutwax {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: #050505;
+  color: #fff;
+  padding: 110px 0;
+  overflow: hidden;
+}
+
+.aboutwax-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 50px;
+
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* LEFT TEXT */
+.aboutwax-left h2 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 25px;
+}
+
+.aboutwax-left p {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  opacity: 0.85;
+  margin-bottom: 18px;
+  max-width: 520px;
+}
+
+/* BUTTON */
+.aboutwax-btn {
+  margin-top: 20px;
+  background: transparent;
+  color: white;
+  border: 1.8px solid rgba(255,255,255,0.9);
+  padding: 12px 26px;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.aboutwax-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* RIGHT MOSAIC */
+.aboutwax-right {
+  position: relative;
+  width: 100%;
+  height: 520px;
+}
+
+.mosaic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mosaic-img {
+  position: absolute;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  transition: transform 0.8s ease;
+}
+
+/* placement style capture */
+.img1 {
+  width: 60%;
+  height: 62%;
+  top: 0;
+  right: 0;
+}
+
+.img2 {
+  width: 46%;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+}
+
+.img3 {
+  width: 40%;
+  height: 48%;
+  top: 18%;
+  left: 26%;
+}
+
+/* slow luxury hover */
+.aboutwax-right:hover .mosaic-img {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* reveal animation */
+.aboutwax .aboutwax-left,
+.aboutwax .aboutwax-right {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 1s ease;
+}
+
+.aboutwax.in-view .aboutwax-left,
+.aboutwax.in-view .aboutwax-right {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .aboutwax-inner {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .aboutwax-right {
+    height: 460px;
+  }
+}
+
+@media (max-width: 600px) {
+  .aboutwax {
+    padding: 80px 0;
+  }
+
+  .aboutwax-inner {
+    padding: 0 22px;
+  }
+
+  .aboutwax-right {
+    height: 380px;
+  }
+
+  .img1, .img2, .img3 {
+    border-radius: 16px;
+  }
+}
+/* ===== HERO SIGNATURE (PHRASE GRAND FORMAT) ===== */
+.aboutwax-hero {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 50px 60px;
+  text-align: center;
+}
+
+.aboutwax-hero-kicker {
+  font-size: 0.9rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+
+.aboutwax-hero-title {
+  font-size: clamp(2.2rem, 4.2vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.aboutwax-hero-line {
+  width: 120px;
+  height: 2px;
+  background: rgba(255,255,255,0.7);
+  margin: 28px auto 0;
+  border-radius: 2px;
+}
+
+/* Animation reveal liée à ta classe in-view */
+.aboutwax .aboutwax-hero {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: all 1s ease;
+}
+
+.aboutwax.in-view .aboutwax-hero {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .aboutwax-hero {
+    padding: 0 22px 45px;
+  }
+
+  .aboutwax-hero-kicker {
+    letter-spacing: 0.3em;
+    font-size: 0.8rem;
+  }
+}
+/* ===================== HERO BACKGROUND ===================== */
+
+.aboutwax-hero-bg {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  height: 60vh;                      /* hauteur du hero */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* Overlay noir pour garder le texte lisible */
+.aboutwax-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.75)
+  );
+  z-index: 1;
+}
+
+/* Le contenu */
+.aboutwax-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 30px;
+}
+
+.aboutwax-hero-title {
+  font-size: clamp(2.6rem, 4.6vw, 4.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 auto;
+  line-height: 1.15;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+  color: white;
+}
+
+.aboutwax-hero-kicker {
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.aboutwax-hero-line {
+  width: 120px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  margin: 25px auto 0;
+  border-radius: 2px;
+}
+
+/* Reveal animation */
+.aboutwax .aboutwax-hero-bg,
+.aboutwax .aboutwax-hero {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 1s ease;
+}
+
+.aboutwax.in-view .aboutwax-hero-bg,
+.aboutwax.in-view .aboutwax-hero {
+  opacity: 1;
+  transform: translateY(0);
+}

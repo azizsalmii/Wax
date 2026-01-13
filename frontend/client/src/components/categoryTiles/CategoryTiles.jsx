@@ -45,7 +45,7 @@ export default function CategoryTiles() {
         <div className="category-section-header">
           <span className="category-kicker">CATEGORIES</span>
           <h2>SHOP BY CATEGORY</h2>
-          <p>Choisis ta vibe et plonge dans la collection.</p>
+          <p>Choose your vibe and dive into the collection.</p>
         </div>
 
         {/* Grille de catégories */}
@@ -68,7 +68,7 @@ export default function CategoryTiles() {
                 <div className="tile-title-modern">
                   {it.label.toUpperCase()}
                 </div>
-                <div className="tile-sub-modern">VOIR LA CATÉGORIE</div>
+                <div className="tile-sub-modern">View Category</div>
               </div>
             </button>
           ))}

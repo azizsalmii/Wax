@@ -1,52 +1,62 @@
-import React, {useEffect, useState} from 'react'
-import ProductCard from '../components/ProductCard'
-import Hero from '../components/hero/Hero'
-import Footer from '../components/Footer'
-import api from '../services/api'
-import Categories from '../components/Categories'
-import CategoryTiles from '../components/categoryTiles/CategoryTiles'
-import RecentProducts from '../components/recentProducts/RecentProducts'
+import React, { useEffect, useState } from "react";
+
+import Hero from "../components/hero/Hero";
 import CollectionCircles from "../components/collections/CollectionCircles";
+import BestSellers from "../components/bestSellers/BestSellers";
+import CategoryTiles from "../components/categoryTiles/CategoryTiles";
 
-export default function Home(){
-  const [produits, setProduits] = useState([])
+import Categories from "../components/Categories";
+import RecentProducts from "../components/recentProducts/RecentProducts";
+import ProductCard from "../components/ProductCard";
+import Footer from "../components/Footer";
 
-  useEffect(()=>{
-    api.fetchProduits().then(setProduits).catch(()=>{})
-  },[])
+import TrackBanner from "../components/trackBanner/TrackBanner"; 
+import AboutWax from "../components/aboutWax/AboutWax"; // 🌟 Nouvelle section About
 
-  // derive categories and recents
-  const categories = Array.from(new Set(produits.map(p=>p.categorie).filter(Boolean)))
-  const recents = produits.slice().sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)).slice(0,6)
+import api from "../services/api";
+
+export default function Home() {
+  const [produits, setProduits] = useState([]);
+
+  useEffect(() => {
+    api.fetchProduits().then(setProduits).catch(() => {});
+  }, []);
+
+  const categories = Array.from(
+    new Set(produits.map((p) => p.categorie).filter(Boolean))
+  );
+
+  const recents = produits
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 6);
 
   return (
     <div>
+
+      {/* ===================== HERO ===================== */}
       <Hero />
+
+      {/* Track Banner */}
+      <TrackBanner />
+
+      {/* ===================== COLLECTION CIRCLES ===================== */}
       <CollectionCircles />
-      <div className="container">
-        <section style={{marginTop:18}}>
-          
-          <CategoryTiles />
-        </section>
 
-        <section style={{marginTop:18}}>
-          <h2>Catégories</h2>
-          <Categories categories={categories} />
-        </section>
+      {/* Track Banner */}
+      <TrackBanner />
 
-        <section style={{marginTop:28}}>
-          <h2>Produits récents</h2>
-          <RecentProducts produits={recents} />
-        </section>
+      {/* ===================== BEST SELLERS ===================== */}
+      <BestSellers />
 
-        <section style={{marginTop:28}}>
-          <h2>Tous les produits</h2>
-          <div className="product-grid">
-            {produits.map(p=> <ProductCard key={p._id} produit={p} />)}
-          </div>
-        </section>
-      </div>
-      <Footer />
+      {/* Track Banner */}
+      <TrackBanner />
+
+      {/* ===================== CATEGORY TILES ===================== */}
+      <CategoryTiles />
+
+      
+
     </div>
-  )
+  );
 }

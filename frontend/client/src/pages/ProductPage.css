@@ -1,0 +1,562 @@
+/* SECTION PRODUITS – fond plein largeur */
+.prod-section {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  background: radial-gradient(
+    circle at top,
+    #191419 0%,
+    #050505 55%,
+    #020202 100%
+  );
+  color: #ffffff;
+  padding: 80px 0 90px;
+
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.prod-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== HERO VIDEO ===== */
+
+.prod-hero {
+  max-width: 1400px;
+  margin: 0 auto 32px;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  background: #050505;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95);
+}
+
+.prod-hero-video {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  /* 👉 beaucoup plus clair */
+  filter: brightness(0.95) contrast(1.05) saturate(1.05);
+  transform: scale(1.03);
+  animation: hero-pan 18s ease-in-out infinite alternate;
+}
+
+/* légère animation pour donner de la vie à la vidéo */
+@keyframes hero-pan {
+  0% {
+    transform: scale(1.03) translateX(0);
+  }
+  100% {
+    transform: scale(1.06) translateX(-10px);
+  }
+}
+
+.prod-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* 👉 overlay beaucoup moins foncé, surtout au centre */
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255, 255, 255, 0.10),
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.75)
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prod-hero-text {
+  text-align: center;
+  max-width: 760px;
+  padding: 32px 24px 40px;
+}
+
+/* Titre du hero */
+.prod-hero-title {
+  font-size: 2.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: none;
+  margin: 8px 0 8px;
+}
+
+.prod-hero-subtitle {
+  margin-top: 6px;
+  font-size: 0.96rem;
+  letter-spacing: 0.04em;
+  opacity: 0.82; /* un peu plus visible */
+}
+
+
+/* Wrapper du contenu sous le hero */
+.prod-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  /* léger padding à gauche pour que la sidebar soit bien collée visuellement */
+  padding: 0 32px 0 20px;
+}
+
+/* HEADER (encore là au cas où tu le réutilises ailleurs) */
+
+.prod-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.prod-kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.prod-header h2 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  margin: 0;
+}
+
+.prod-header p {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+/* Onglets */
+
+.prod-tabs {
+  margin-top: 24px;
+  display: inline-flex;
+  gap: 12px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.prod-tab {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  transition: all 0.3s ease;
+}
+
+.prod-tab.active {
+  background: #ffffff;
+  color: #050505;
+}
+
+/* ===== LAYOUT AVEC SIDEBAR ===== */
+
+.prod-layout {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* SIDEBAR */
+
+.prod-filters {
+  background: rgba(9, 7, 10, 0.96);
+  border-radius: 22px;
+  padding: 18px 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+  position: sticky;
+  top: 110px;
+  /* scroll interne si la sidebar dépasse la hauteur de l'écran */
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+}
+
+/* petit scrollbar propre dans la sidebar */
+.prod-filters::-webkit-scrollbar {
+  width: 6px;
+}
+.prod-filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+.prod-filters::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.filter-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.82;
+}
+
+/* Recherche – version "pro" sans icône */
+
+.filter-search {
+  background: rgba(4, 4, 6, 0.95);
+  border-radius: 999px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.filter-search input {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+}
+
+.filter-search input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.filter-search:focus-within {
+  border-color: rgba(255, 215, 140, 0.9);
+  box-shadow: 0 0 24px rgba(255, 215, 140, 0.45);
+  background: rgba(8, 8, 12, 0.98);
+}
+
+/* Pills */
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-pill {
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.01);
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.filter-pill.active {
+  background: #ffffff;
+  color: #050505;
+}
+
+/* MAIN CONTENT */
+
+.prod-main {
+  min-width: 0;
+}
+
+/* ÉTAT */
+
+.prod-state {
+  padding: 40px 24px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* GRID PRODUITS */
+
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* CARD */
+
+.prod-card {
+  background: #121013;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  transform: translateY(20px) scale(0.97);
+  opacity: 0;
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease,
+    opacity 0.5s ease,
+    border 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* apparition en cascade */
+.prod-section.in-view .prod-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.prod-section.in-view .card-1 {
+  transition-delay: 0.05s;
+}
+.prod-section.in-view .card-2 {
+  transition-delay: 0.1s;
+}
+.prod-section.in-view .card-3 {
+  transition-delay: 0.15s;
+}
+.prod-section.in-view .card-4 {
+  transition-delay: 0.2s;
+}
+.prod-section.in-view .card-5 {
+  transition-delay: 0.25s;
+}
+.prod-section.in-view .card-6 {
+  transition-delay: 0.3s;
+}
+
+.prod-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* IMAGE */
+
+.prod-image {
+  position: relative;
+  height: 320px;
+  background-size: cover;
+  background-position: top center;
+  filter: brightness(1.05) contrast(1.05);
+  transition: transform 0.5s ease, filter 0.4s ease, background-position 0.4s ease;
+}
+
+.prod-card:hover .prod-image {
+  transform: scale(1.04);
+  background-position: center;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Badge */
+
+.prod-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* CONTENU CARTE */
+
+.prod-content {
+  padding: 16px 18px 18px;
+}
+
+.prod-title {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.prod-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.prod-price {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.prod-old-price {
+  font-size: 0.8rem;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.prod-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.prod-meta {
+  opacity: 0.8;
+}
+
+/* CTA */
+
+.prod-cta {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.prod-cta:hover {
+  background: #ffffff;
+  color: #050505;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+  .prod-inner {
+    padding: 0 24px;
+  }
+
+  .prod-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+
+  .prod-image {
+    height: 280px;
+  }
+}
+
+@media (max-width: 900px) {
+  .prod-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .prod-filters {
+    position: static;
+    max-height: none;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .prod-inner {
+    padding: 0 16px;
+  }
+
+  .prod-header h2 {
+    font-size: 2rem;
+  }
+
+  .prod-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prod-image {
+    height: 260px;
+  }
+
+  .prod-hero-video {
+    height: 260px;
+  }
+}
+/* ================= BADGE DISPO LUXE ================= */
+
+.prod-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Badge glassmorphism luxe */
+/* ================= BADGE DISPO LUXE – VERSION DARK PREMIUM ================= */
+
+/* ================= BADGE DISPONIBILITÉ DARK PREMIUM ================= */
+
+.badge-soft {
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+
+  /* Fond sombre très proche du thème */
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* Glassmorphism discret */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  color: #d8d8d8; /* gris clair neutre */
+  white-space: nowrap;
+  transition: 0.25s ease;
+}
+
+/* AVAILABLE – accent vert très subtil */
+.badge-soft.available {
+  color: #951111; /* Vert pale luxueux */
+  border-color: rgba(80, 255, 150, 0.25);
+  box-shadow: 0 0 6px rgba(80, 255, 150, 0.12);
+}
+
+/* SOLD OUT – accent rouge très subtil */
+.badge-soft.soldout {
+  color: #000000; /* Rouge rose désaturé = plus chic */
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 6px rgba(255, 80, 80, 0.10);
+}
+
+/* Position du badge dans la carte */
+.prod-badge-luxe {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+}
+
+
+/* Désactivation totale de l'ancien badge */
+.prod-badge {
+  display: none !important;
+}
