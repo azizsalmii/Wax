@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Orders.css"; // Nouveau style
+import { API_ORIGIN } from "../services/apiOrigin";
+
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/orders/all")
+      .get(`${API_ORIGIN}/api/orders/all`)
       .then((res) => setOrders(res.data))
       .catch((err) => console.error("Erreur chargement commandes:", err));
   }, []);

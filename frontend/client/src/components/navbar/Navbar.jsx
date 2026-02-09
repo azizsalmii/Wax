@@ -28,10 +28,10 @@ export default function Navbar() {
 
   const navItems = [
     { to: "/", label: "Home" },
-    { to: "/produits", label: "Produits" },
+    { to: "/produits", label: "Products" },
     { to: "/collection", label: "Collection" },
     { to: "/feedback", label: "Feedback" },
-    { to: "/about", label: "À propos" },
+    { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
   ];
 

@@ -31,16 +31,16 @@ Invoke-RestMethod -Uri 'http://localhost:5000/api/produits' -Method Get
 ```
 - Récupérer par id:
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:5000/api/produits/<id>" -Method Get
+Invoke-RestMethod -Uri `${API_ORIGIN}/api/produits/<id>" -Method Get
 ```
 - Mettre à jour:
 ```powershell
 $body = @{ prix = 24.99 } | ConvertTo-Json
-Invoke-RestMethod -Uri "http://localhost:5000/api/produits/<id>" -Method Put -Body $body -ContentType 'application/json'
+Invoke-RestMethod -Uri `${API_ORIGIN}/api/produits/<id>" -Method Put -Body $body -ContentType 'application/json'
 ```
 - Supprimer:
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:5000/api/produits/<id>" -Method Delete
+Invoke-RestMethod -Uri `${API_ORIGIN}/api/produits/<id>" -Method Delete
 ```
 
 Panier

@@ -1,6 +1,8 @@
 import axios from "axios";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE = "http://localhost:5000/api/collections";
+
+const API_BASE = `${API_ORIGIN}/api/collections`;
 
 // GET all
 export const getCollections = () => axios.get(API_BASE);

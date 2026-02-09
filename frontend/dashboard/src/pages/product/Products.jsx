@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductForm from "../../components/productForm/ProductForm.jsx";
 import "./Product.css";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE_URL = "http://localhost:5000/api";
-const SERVER_BASE_URL = "http://localhost:5000";
+
+const API_BASE_URL = `${API_ORIGIN}/api`;
+const SERVER_BASE_URL = `${API_ORIGIN}`;
 
 export default function Products() {
   const [products, setProducts] = useState([]);

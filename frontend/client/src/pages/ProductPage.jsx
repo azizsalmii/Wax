@@ -3,8 +3,9 @@ import React, { useEffect, useRef, useState, useMemo } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./ProductPage.css";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${API_ORIGIN}`;
 
 export default function ProductPage() {
   const navigate = useNavigate();
@@ -198,7 +199,7 @@ useEffect(() => {
               <div className="filter-search">
                 <input
                   type="text"
-                  placeholder="Rechercher un produit..."
+                  placeholder="Search products..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -218,7 +219,7 @@ useEffect(() => {
                   }`}
                   onClick={() => setFilterCollection("all")}
                 >
-                  Toutes
+                  All
                 </button>
                 {collectionOptions.map((c) => (
                   <button
@@ -248,7 +249,7 @@ useEffect(() => {
                   }`}
                   onClick={() => setFilterCategorie("all")}
                 >
-                  Tous
+                  All
                 </button>
                 {categorieOptions.map((cat) => (
                   <button
@@ -278,7 +279,8 @@ useEffect(() => {
                   }`}
                   onClick={() => setFilterTaille("all")}
                 >
-                  Toutes
+                  All
+                  
                 </button>
                 {taillesOptions.map((t) => (
                   <button

@@ -1,3 +1,22 @@
+/* ====== FONT (pro, propre) ======
+   Option 1 (recommandée): ajoute Inter dans index.html (head)
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   Sinon, le fallback système fonctionne très bien.
+*/
+:root {
+  --cart-bg: #0d0d0d;
+  --cart-card: #151515;
+  --gold: #f7d774;
+  --gold-2: #b38728;
+  --text: #ffffff;
+  --muted: rgba(255,255,255,0.68);
+  --muted2: rgba(255,255,255,0.5);
+  --border: rgba(255, 215, 0, 0.15);
+  --border-strong: rgba(255, 215, 0, 0.25);
+}
+
 /* --- ANIMATION OVERLAY (fade-in) --- */
 @keyframes drawerOverlayFade {
   from { opacity: 0; }
@@ -6,26 +25,10 @@
 
 /* --- ANIMATION DU SLIDE IN --- */
 @keyframes drawerSlideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
 
-/* --- ANIMATION DU SLIDE OUT --- */
-@keyframes drawerSlideOut {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-
-/* --- OVERLAY --- */
 .cart-overlay {
   position: fixed;
   inset: 0;
@@ -34,112 +37,216 @@
   display: flex;
   justify-content: flex-end;
   z-index: 3000;
-  animation: drawerOverlayFade 0.3s ease forwards;
-
+  animation: drawerOverlayFade 0.25s ease forwards;
 }
 
-/* --- DRAWER PRINCIPAL --- */
 .cart-drawer {
   width: 420px;
-  height: 100vh;              /* IMPORTANT */
-  background: #0d0d0d;
-  border-left: 1px solid rgba(255, 200, 0, 0.25);
-  box-shadow: -4px 0 30px rgba(0,0,0,0.5);
-  
+  height: 100vh;
+  background: var(--cart-bg);
+  border-left: 1px solid var(--border-strong);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+
   display: flex;
   flex-direction: column;
   position: relative;
-  animation: drawerSlideIn 0.35s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: drawerSlideIn 0.32s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* --- HEADER --- */
+/* HEADER */
 .cart-header {
-  padding: 22px;
+  padding: 20px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255,215,0,0.15);
+  border-bottom: 1px solid var(--border);
 }
 
-.cart-header h2 {
-  color: white;
+.cart-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-title {
+  margin: 0;
+  color: var(--text);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.1;
+}
+
+.cart-subtitle {
+  color: var(--muted2);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .close-btn {
-  font-size: 24px;
-  color: gold;
-  background: none;
-  border: none;
+  font-size: 22px;
+  color: var(--gold);
+  background: rgba(255,215,0,0.06);
+  border: 1px solid rgba(255,215,0,0.18);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
-/* --- LISTE DES PRODUITS (scrollable) --- */
+.close-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255,215,0,0.10);
+}
+
+/* LISTE DES PRODUITS */
 .cart-items {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 18px 20px;
 }
 
-.cart-items::-webkit-scrollbar {
-  width: 6px;
-}
+.cart-items::-webkit-scrollbar { width: 6px; }
 .cart-items::-webkit-scrollbar-thumb {
-  background: gold;
+  background: var(--gold);
   border-radius: 10px;
 }
 
-/* --- CARD PRODUIT --- */
+/* EMPTY STATE (panier vide) */
+.empty-state {
+  height: 100%;
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 30px 14px;
+}
+
+.empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: radial-gradient(circle at top, rgba(247,215,116,0.20), rgba(247,215,116,0.05));
+  border: 1px solid rgba(255,215,0,0.18);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.10);
+  margin-bottom: 12px;
+}
+
+.empty-state h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.empty-state p {
+  margin: 8px 0 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+.empty-cta {
+  padding: 11px 14px;
+  width: 100%;
+  max-width: 240px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,215,0,0.25);
+  cursor: pointer;
+  font-weight: 700;
+  color: #111;
+  background: linear-gradient(90deg, var(--gold-2), #f7ef8a, var(--gold-2));
+}
+
+/* CARD PRODUIT */
 .cart-card {
   display: flex;
-  gap: 15px;
-  background: #151515;
-  border: 1px solid rgba(255,215,0,0.15);
-  padding: 15px;
+  gap: 14px;
+  background: var(--cart-card);
+  border: 1px solid var(--border);
+  padding: 14px;
   border-radius: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .cart-img {
-  width: 85px;
-  height: 85px;
+  width: 86px;
+  height: 86px;
   object-fit: cover;
   border-radius: 12px;
 }
 
-/* --- INFO PRODUIT --- */
-.cart-info h3 {
-  margin: 0;
-  color: white;
-  font-size: 16px;
-}
-.cart-info p {
-  margin: 3px 0;
-  color: #ccc;
-}
-.price {
-  color: gold;
-  font-weight: bold;
+/* INFO PRODUIT */
+.cart-info { flex: 1; }
+
+.cart-row-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-/* --- BOUTON SUPPRESSION --- */
+.cart-item-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cart-item-price {
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.cart-meta {
+  margin-top: 6px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: rgba(255,255,255,0.68);
+  font-size: 13px;
+}
+
+.cart-meta b {
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+}
+
+/* BOUTON SUPPRESSION */
 .delete-btn {
-  margin-top: 8px;
-  padding: 7px 15px;
-  background: #C62828;
-  border: none;
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: rgba(198, 40, 40, 0.95);
+  border: 1px solid rgba(255,255,255,0.08);
   color: white;
   border-radius: 12px;
   cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-/* --- FOOTER FIXE EN BAS --- */
+.delete-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* FOOTER */
 .cart-footer {
-  padding: 18px 22px;
+  padding: 16px 22px;
   border-top: 1px solid rgba(255,215,0,0.2);
-  background: #0d0d0d;
+  background: var(--cart-bg);
   position: sticky;
   bottom: 0;
 }
@@ -147,8 +254,8 @@
 .total-row {
   display: flex;
   justify-content: space-between;
-  color: white;
-  font-size: 18px;
+  color: var(--text);
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
@@ -158,55 +265,7 @@
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  font-weight: bold;
-  background: linear-gradient(90deg, #b38728, #f7ef8a, #b38728);
-}
-.success-toast {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-
-  padding: 12px 20px;
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid rgba(255, 215, 0, 0.45);
-  border-radius: 12px;
-
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.20);
-  backdrop-filter: blur(4px);
-
-  z-index: 5000;
-
-  animation: fadeInSlide 0.35s ease,
-             fadeOutSlide 0.35s ease 1.8s forwards;
-}
-
-.success-toast .icon {
-  color: gold;
-  font-size: 18px;
-}
-
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes fadeOutSlide {
-  to {
-    opacity: 0;
-    transform: translateY(-15px) scale(0.95);
-  }
+  font-weight: 800;
+  color: #111;
+  background: linear-gradient(90deg, var(--gold-2), #f7ef8a, var(--gold-2));
 }

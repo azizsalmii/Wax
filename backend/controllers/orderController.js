@@ -2,6 +2,17 @@
 const nodemailer = require("nodemailer");
 const Order = require("../models/Order");
 
+const API_ORIGIN = process.env.API_ORIGIN || "http://localhost:5000"; // backend public URL (pour images)
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+
+function buildImageUrl(imagePath) {
+  if (!imagePath) return "";
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
+  // ex: "/uploads/xxx.jpg" -> "http://localhost:5000/uploads/xxx.jpg"
+  return `${API_ORIGIN}${imagePath}`;
+}
+
 // -------------------------------------------------------------
 // 📌 CREATE ORDER + SEND EMAIL
 // -------------------------------------------------------------
@@ -9,22 +20,27 @@ exports.createOrder = async (req, res) => {
   const { customer, cart, total } = req.body;
 
   try {
+    if (!SMTP_USER || !SMTP_PASS) {
+      return res.status(500).json({
+        success: false,
+        error: "SMTP credentials missing (SMTP_USER/SMTP_PASS)",
+      });
+    }
+
     // MAIL CONFIG
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "iyedbf9@gmail.com",
-        pass: "jmdqymogdtjyqcfl",
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+
       },
     });
 
     // PRODUCT LIST HTML
-    const itemsList = cart
+    const itemsList = (cart || [])
       .map((item) => {
-        const BASE_URL = "http://localhost:5000";
-        const imageUrl = item.image.startsWith("http")
-          ? item.image
-          : BASE_URL + item.image;
+        const imageUrl = buildImageUrl(item.image);
 
         return `
           <tr>
@@ -32,10 +48,10 @@ exports.createOrder = async (req, res) => {
               <img src="${imageUrl}" alt="Produit"
                 style="width:70px;height:70px;border-radius:8px;object-fit:cover;" />
             </td>
-            <td style="border:1px solid #ccc;padding:8px;">${item.nom}</td>
-            <td style="border:1px solid #ccc;padding:8px;">${item.taille}</td>
-            <td style="border:1px solid #ccc;padding:8px;">${item.quantite}</td>
-            <td style="border:1px solid #ccc;padding:8px;">${item.prix} TND</td>
+            <td style="border:1px solid #ccc;padding:8px;">${item.nom || ""}</td>
+            <td style="border:1px solid #ccc;padding:8px;">${item.taille || ""}</td>
+            <td style="border:1px solid #ccc;padding:8px;">${item.quantite || 0}</td>
+            <td style="border:1px solid #ccc;padding:8px;">${item.prix || 0} TND</td>
           </tr>
         `;
       })
@@ -44,11 +60,9 @@ exports.createOrder = async (req, res) => {
     const html = `
       <div style="font-family:Arial, sans-serif; max-width:650px; margin:auto;">
         <h2 style="text-align:center;">Nouvelle commande – WAX Boutique</h2>
-
         <hr />
 
         <h3>Détails de la commande</h3>
-
         <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
           <tr style="background:#f7f7f7;">
             <th style="padding:10px;border:1px solid #ccc;">Image</th>
@@ -65,25 +79,25 @@ exports.createOrder = async (req, res) => {
 
         <h3>Client</h3>
         <p>
-          ${customer.nom} ${customer.prenom}<br>
-          Email : ${customer.email}<br>
-          Tel : ${customer.telephone}
+          ${(customer?.nom || "")} ${(customer?.prenom || "")}<br>
+          Email : ${(customer?.email || "")}<br>
+          Tel : ${(customer?.telephone || "")}
         </p>
 
         <h3>Adresse</h3>
-        <p>${customer.adresse}, ${customer.delegation}, ${customer.gouvernorat}, Tunisie</p>
+        <p>${(customer?.adresse || "")}, ${(customer?.delegation || "")}, ${(customer?.gouvernorat || "")}, Tunisie</p>
       </div>
     `;
 
     // SAVE TO DATABASE
     const newOrder = new Order({
-      nom: customer.nom,
-      prenom: customer.prenom,
-      email: customer.email,
-      telephone: customer.telephone,
-      gouvernorat: customer.gouvernorat,
-      delegation: customer.delegation,
-      adresse: customer.adresse,
+      nom: customer?.nom,
+      prenom: customer?.prenom,
+      email: customer?.email,
+      telephone: customer?.telephone,
+      gouvernorat: customer?.gouvernorat,
+      delegation: customer?.delegation,
+      adresse: customer?.adresse,
       cart,
       total,
     });
@@ -92,8 +106,8 @@ exports.createOrder = async (req, res) => {
 
     // SEND EMAIL
     await transporter.sendMail({
-      from: "WAX Boutique <iyedbf9@gmail.com>",
-      to: "iyedbf9@gmail.com",
+      from: `WAX Boutique <${SMTP_USER}>`,
+      to: SMTP_USER, // ou process.env.ORDERS_TO si tu veux envoyer ailleurs
       subject: "Nouvelle commande – WAX",
       html,
     });

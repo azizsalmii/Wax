@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CollectionCircles.css";
+import { API_ORIGIN } from "../../services/apiOrigin";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${API_ORIGIN}`;
 
 export default function CollectionCircles() {
   const navigate = useNavigate();

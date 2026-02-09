@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Feedback.css";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = `${API_ORIGIN}`;
 
 /* ============================
    COMPONENT : STAT COUNTER

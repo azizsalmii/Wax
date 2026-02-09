@@ -5,8 +5,9 @@ import "./CollectionDetailPage.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${API_ORIGIN}`;
 
 export default function CollectionDetailPage() {
   const { id } = useParams();
@@ -130,16 +131,16 @@ export default function CollectionDetailPage() {
                 className={`cdp-filter-btn ${activeCategory === cat ? "active" : ""}`}
                 onClick={() => setActiveCategory(cat)}
               >
-                {cat === "all" ? "TOUS" : cat.toUpperCase()}
+                {cat === "all" ? "ALL" : cat.toUpperCase()}
               </button>
             ))}
           </div>
 
           {/* GRID PRODUITS */}
           {loadingProduits ? (
-            <p className="cdp-loading">Chargement des produits...</p>
+            <p className="cdp-loading">Charge products...</p>
           ) : filteredProduits.length === 0 ? (
-            <p className="cdp-loading">Aucun produit dans cette catégorie.</p>
+            <p className="cdp-loading">No products in this category.</p>
           ) : (
            <div className="cdp-grid">
   {filteredProduits.map((p, i) => (

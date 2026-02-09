@@ -5,8 +5,9 @@ import axios from "axios";
 import "./ProductDetail.css";
 import LuxeToast from "../components/LuxeToast";
 import { useCart } from "../context/CartContext";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${API_ORIGIN}`;
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -223,7 +224,7 @@ export default function ProductDetail() {
 
             {/* 🔹 QUANTITÉ */}
             <div className="panel-block">
-              <span className="panel-label">Quantité</span>
+              <span className="panel-label">Quantity</span>
               <div className="qty-row">
                 <button onClick={() => setQty((q) => Math.max(1, q - 1))}>
                   −
@@ -236,7 +237,7 @@ export default function ProductDetail() {
             {/* 🔹 AJOUT AU PANIER */}
             <div className="panel-actions">
               <button className="btn-primary" onClick={handleOrder}>
-                Ajouter au panier
+                Add to Cart
               </button>
             </div>
 

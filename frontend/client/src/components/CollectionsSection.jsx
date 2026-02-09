@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./CollectionsSection.css";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${API_ORIGIN}`;
 
 export default function CollectionsSection() {
   const [collections, setCollections] = useState([]);

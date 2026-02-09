@@ -4,3 +4,4 @@
 # Optionnel : ignorer les fichiers de logs et autres temporaires
 *.log
 .DS_Store
+.env

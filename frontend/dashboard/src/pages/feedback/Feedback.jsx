@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Feedback.css";
+import { API_ORIGIN } from "../services/apiOrigin";
 
-const API_BASE_URL = "http://localhost:5000/api";
+
+const API_BASE_URL = `${API_ORIGIN}/api`;
 
 export default function Feedback() {
   const [feedbacks, setFeedbacks] = useState([]);

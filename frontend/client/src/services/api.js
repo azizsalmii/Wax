@@ -1,9 +1,12 @@
-const BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api'
+const API_ORIGIN = import.meta.env.VITE_API_BASE || `${API_ORIGIN}`;
 
-export async function fetchProduits(){
-  const res = await fetch(`${BASE}/produits`)
-  if (!res.ok) throw new Error('Failed to fetch produits')
-  return res.json()
+const BASE = `${API_ORIGIN}/api`;
+
+// Produits
+export async function fetchProduits() {
+  const res = await fetch(`${BASE}/produits`);
+  if (!res.ok) throw new Error("Failed to fetch produits");
+  return res.json();
 }
 
-export default { fetchProduits }
+export default { fetchProduits };
