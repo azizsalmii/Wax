@@ -94,7 +94,7 @@ export default function Navbar() {
       <button
         className={`hamburger ${mobileOpen ? "open" : ""}`}
         onClick={() => setMobileOpen(!mobileOpen)}
-        aria-label="Ouvrir le menu"
+        aria-label="Open menu"
       >
         <span></span>
         <span></span>
